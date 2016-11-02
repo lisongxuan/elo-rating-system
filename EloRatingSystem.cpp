@@ -39,6 +39,11 @@ int games[1000][4];
 int game_num=0;
 int player_num=0;
 
+bool sort_compare(player_info a, player_info b)
+{
+	return a.rating > b.rating;
+}
+
 double k_factor_calculate(int id)
 {
 	int game_played=pi[id].game_lost+pi[id].game_won;
@@ -161,6 +166,16 @@ void output_file()
 	}
 //	fclose(stdout);
 }
+
+void rating_sort()
+{
+	sort(pi+1,pi+player_num+1,sort_compare);
+	
+	name_id.clear();
+	for(int p=1;p<=player_num;p++)
+	name_id.insert(make_pair<string,int>(pi[p].name,p));
+}
+
 int main()
 {
 	freopen("Games_16Oct.txt","r",stdin);
@@ -168,20 +183,13 @@ int main()
 	n=read();
 	for(int p=1;p<=n;p++)
 	input_file();
-	
+	rating_sort();
 	output_file();
 	fclose(stdout);
 	return 0;
 	
 }
 
-/*
-void rating_sort()
-{
-	sort(pi+1,pi+player_num+1);
-	
-	name_id.clear();
-	for(int p=1;p<=player_num;p++)
-	name_id.insert(make_pair<string,int>(pi[p].name,p));
-}
-*/
+
+
+
