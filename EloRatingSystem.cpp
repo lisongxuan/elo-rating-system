@@ -104,13 +104,11 @@ void player_insert(string name)
 	
 }
 
-double win_rating(string name)
+double win_rating(int id)
 {
-	int id=id_find(name);
 	
 	int game_played=pi[id].game_lost+pi[id].game_won;
-	
-	double x=pi[id].game_won/game_played;
+	double x=100.0000*pi[id].game_won/game_played;
 	
 	return x;
 }
@@ -159,7 +157,7 @@ void output_file()
 	for(int p=1;p<=player_num;p++)
 	{
 		if(pi[p].game_lost+pi[p].game_won>=15)
-		cout << pi[p].name << "," << pi[p].rating << endl;
+		cout << pi[p].name << " , " << pi[p].rating << " , " <<  win_rating(p) << endl;
 	}
 //	fclose(stdout);
 }
