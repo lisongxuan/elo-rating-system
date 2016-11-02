@@ -11,7 +11,7 @@
 using namespace std;
 
 const double START_RATING = 1500.000;
-const int MIN_GAMES = 15;
+const int MIN_GAMES = 12;
 
 map<string,int>name_id;
 
@@ -30,12 +30,13 @@ struct player_info
 	int game_won;
 	int game_lost;
 	double rating;
-//	bool operator<( const player_info& i ) { return rating > i.rating; }
+	int rating_change_history_time;
+	string rating_change_history_oppo[50];
+	double rating_change_history_rating[50];
 	
 }pi[200];
 
 int games[1000][4];
-
 int game_num=0;
 int player_num=0;
 
@@ -57,6 +58,14 @@ double k_factor_calculate(int id)
 	return x;
 }
 
+void history_rating_mark(int self_id,string opponant)
+{
+	pi[self_id].rating_change_history_time++;
+	pi[self_id].rating_change_history_oppo[pi[self_id].rating_change_history_time]= opponant;
+	pi[self_id].rating_change_history_rating[pi[self_id].rating_change_history_time]=pi[self_id].rating;
+	return;
+}
+
 void player_rating_calculate(int winner_id,int loser_id)
 {
 	
@@ -68,8 +77,18 @@ void player_rating_calculate(int winner_id,int loser_id)
 	double loser_expected_score = q_loser_rating/(q_winner_rating+q_loser_rating);
 	double winner_new_score = pi[winner_id].rating + (k_factor_calculate(winner_id) * (1 - winner_expected_score));
 	double loser_new_score =  pi[loser_id].rating + (k_factor_calculate(loser_id) * (0 - loser_expected_score));
+	
 	pi[winner_id].rating=winner_new_score;
 	pi[loser_id].rating=loser_new_score;
+}
+
+void history_rating_output(int player_id)
+{
+	freopen("historyrating0.TXT","w",stdout);
+	
+	for(int p=1;p<=pi[player_id].rating_change_history_time;p++)
+	cout << pi[player_id].rating_change_history_oppo[p] << " " << pi[player_id].rating_change_history_rating[p]<< endl;
+	
 }
 
 int id_find(string name)
@@ -134,6 +153,7 @@ void game_insert(string winner,string loser)
 		player_insert(loser);
 		loser_id=id_find(loser);
 	}
+	
 	game_num++;
 	
 	pi[loser_id].game_lost++;
@@ -141,6 +161,8 @@ void game_insert(string winner,string loser)
 	games[game_num][1]=winner_id;
 	games[game_num][2]=loser_id;
 	player_rating_calculate(winner_id,loser_id);
+	history_rating_mark(winner_id,loser);
+	history_rating_mark(loser_id,winner);
 }
 
 void input_file()
@@ -154,17 +176,17 @@ void input_file()
 
 void output_file()
 {
-//	freopen("16OctRatings.txt","w",stdout);
+	freopen("16OctRatings.out","w",stdout);
 	
 	cout << "There are " << game_num << " games and " << player_num << " players in total." << endl;
 	cout << "Minimum games played is " << MIN_GAMES << "." << endl;
 	
 	for(int p=1;p<=player_num;p++)
 	{
-		if(pi[p].game_lost+pi[p].game_won>=15)
-		cout << pi[p].name << " , " << pi[p].rating << " , " <<  win_rating(p) << endl;
+		if(pi[p].game_lost+pi[p].game_won>=MIN_GAMES)
+		cout << pi[p].name << " , " << pi[p].rating << " , " <<  win_rating(p)  << " , " << pi[p].game_lost+pi[p].game_won << endl;
 	}
-//	fclose(stdout);
+	fclose(stdout);
 }
 
 void rating_sort()
@@ -184,7 +206,8 @@ int main()
 	for(int p=1;p<=n;p++)
 	input_file();
 	rating_sort();
-	output_file();
+	history_rating_output(id_find("WFZ"));
+//	output_file();
 	fclose(stdout);
 	return 0;
 	
