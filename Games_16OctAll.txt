@@ -1,4 +1,4 @@
-425
+427
 Moon Focus
 Focus Moon
 Moon Focus
@@ -326,6 +326,8 @@ Chaemiko So.in
 Lyn SoK
 Focus Lucifer
 ReMinD Moon
+SoK Check
+Moon Lawliet
 Colorful SoK
 Colorful SoK
 XiaoKK Zhouxixi
