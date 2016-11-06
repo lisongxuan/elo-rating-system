@@ -1,4 +1,4 @@
-412
+425
 Moon Focus
 Focus Moon
 Moon Focus
@@ -68,6 +68,11 @@ Fly100% Colorful
 Romantic Life
 Life Romantic
 Romantic Life
+Free Focus
+Focus Free
+Focus Free
+ReMinD So.in
+ReMinD So.in
 Yumiko Colorful
 Colorful Yumiko
 Yumiko Colorful
@@ -118,8 +123,8 @@ Lyn 120
 120 Lyn
 Focus OrcWorker
 Focus OrcWorker
-Lyn FoCuS
-Lyn FoCuS
+Lyn Focus
+Lyn Focus
 Rudan Lucifer
 Lucifer Rudan
 Rudan Lucifer
@@ -234,6 +239,14 @@ Check Sonik
 Sonik Check
 Sonik Check
 Check Sonik
+Lyn Believe
+Lyn Believe
+ReMinD Focus
+Focus ReMinD
+Focus ReMinD
+Lucifer Lawliet
+Lawliet Lucifer
+Lucifer Lawliet
 Check XiaoKK
 Check XiaoKK
 ReMinD Lawliet
@@ -267,7 +280,7 @@ SoK Lucifer
 Lucifer SoK
 SoK Lucifer
 Foggy imba
-Foggy inba
+Foggy imba
 XiaoKK soul_soul
 XiaoKK soul_soul
 Th000 120
@@ -350,8 +363,8 @@ Colorful Foggy
 Foggy Colorful
 Romantic XiaoKK
 Romantic XiaoKK
-Sini FoCuS
-FoCuS Sini
+Sini Focus
+Focus Sini
 Life Romantic
 Romantic Life
 Romantic Life
@@ -374,24 +387,24 @@ Romantic SoK
 Romantic SoK
 Foggy Sini
 Foggy Sini
-Sini FoCuS
+Sini Focus
 Sonik Rudan
 Sonik Rudan
-FoCuS OrcWorker
-FoCuS OrcWorker
+Focus OrcWorker
+Focus OrcWorker
 Lucifer Foggy
 Lucifer Foggy
 SoK ReMinD
 SoK ReMinD
-FoCuS Sonik
-FoCuS Sonik
+Focus Sonik
+Focus Sonik
 Foggy SoK
 SoK Foggy
 SoK Foggy
-SoK FoCuS
-FoCuS SoK
-FoCuS SoK
-FoCuS SoK
+SoK Focus
+Focus SoK
+Focus SoK
+Focus SoK
 Check Fly100%
 Check Fly100%
 Lawliet Bo
