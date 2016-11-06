@@ -11,7 +11,7 @@
 using namespace std;
 
 const double START_RATING = 1500.000;
-const int MIN_GAMES = 12;
+const int MIN_GAMES = 20;
 
 map<string,int>name_id;
 
@@ -31,8 +31,8 @@ struct player_info
 	int game_lost;
 	double rating;
 	int rating_change_history_time;
-	string rating_change_history_oppo[50];
-	double rating_change_history_rating[50];
+	string rating_change_history_oppo[150];
+	double rating_change_history_rating[150];
 	
 }pi[200];
 
@@ -84,7 +84,7 @@ void player_rating_calculate(int winner_id,int loser_id)
 
 void history_rating_output(int player_id)
 {
-	freopen("historyrating0.TXT","w",stdout);
+	freopen("HistoryRating.TXT","w",stdout);
 	
 	for(int p=1;p<=pi[player_id].rating_change_history_time;p++)
 	cout << pi[player_id].rating_change_history_oppo[p] << " " << pi[player_id].rating_change_history_rating[p]<< endl;
@@ -94,26 +94,13 @@ void history_rating_output(int player_id)
 int id_find(string name)
 {
 	int id;
-	
 	if(!name_id.count(name))
 	{
 		return -1;
 	}
-	
 	map<string, int>::iterator iter;
 	iter = name_id.find(name);
-	/*
-	if(iter == name_id.end())
-	id=-1;
-	else*/
 	id=iter->second;
-	
-/*	
-	int id=name_id.find(name);
-	
-	if(id==name_id.end())
-	id=-1;
-	*/
 	return id;
 }
 
@@ -176,7 +163,7 @@ void input_file()
 
 void output_file()
 {
-	freopen("16OctRatings.out","w",stdout);
+	freopen("Ratingstxt","w",stdout);
 	
 	cout << "There are " << game_num << " games and " << player_num << " players in total." << endl;
 	cout << "Minimum games played is " << MIN_GAMES << "." << endl;
@@ -200,14 +187,14 @@ void rating_sort()
 
 int main()
 {
-	freopen("Games_16Oct.txt","r",stdin);
+	freopen("Games_Alltime.txt","r",stdin);
 	int n;
 	n=read();
 	for(int p=1;p<=n;p++)
 	input_file();
 	rating_sort();
-	history_rating_output(id_find("WFZ"));
-//	output_file();
+//	history_rating_output(id_find("WFZ"));
+	output_file();
 	fclose(stdout);
 	return 0;
 	
