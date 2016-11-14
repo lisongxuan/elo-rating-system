@@ -427,7 +427,7 @@ Moon Chaemiko
 Chaemiko Moon
 Believe free
 Believe free
-190
+196
 Lawliet Yumiko
 Yumiko Lawliet
 Yumiko Lawliet
@@ -618,3 +618,9 @@ feRfe LongWalk
 LongWalk feRfe
 LongWalk feRfe
 LongWalk feRfe
+Lyn Lucifer
+Lucifer Lyn
+Lyn Lucifer
+Focus Moon
+Moon Focus
+Focus Moon
