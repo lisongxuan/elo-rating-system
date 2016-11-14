@@ -11,7 +11,8 @@
 using namespace std;
 
 const double START_RATING = 1500.000;
-const int MIN_GAMES = 20;
+const int MIN_GAMES = 30;
+const int MIN_MONTHLY_GAMES=5;
 
 map<string,int>name_id;
 
@@ -33,13 +34,16 @@ struct player_info
 	int rating_change_history_time;
 	string rating_change_history_oppo[150];
 	double rating_change_history_rating[150];
+	int monthly_game_num[40];
+	int monthly_game_won[40];
 	
 }pi[200];
+int months_played;
 
 int games[1000][4];
 int game_num=0;
 int player_num=0;
-
+double month_factor=1.00;
 bool sort_compare(player_info a, player_info b)
 {
 	return a.rating > b.rating;
@@ -50,11 +54,20 @@ double k_factor_calculate(int id)
 	int game_played=pi[id].game_lost+pi[id].game_won;
 	double x;
 	if(game_played)
-	x=(800/game_played*1.000);
+	{
+		x=(800/(game_played*month_factor)*1.000);
+		if(pi[id].name=="Th000")
+		cout << x << endl;
+	}
+	
+	
 	else
 	x=48.00;
-	x=max(x,48.000);
-	x=min(x,16.000);
+	
+	x=min(x,48.000);
+	x=max(x,16.000);
+	if(pi[id].name=="Th000")
+		cout << x << endl;
 	return x;
 }
 
@@ -124,6 +137,15 @@ double win_rating(int id)
 	return x;
 }
 
+double monthly_win_rating(int monthnum,int id)
+{
+	
+	int game_played=pi[id].monthly_game_num[monthnum];
+	double x=100.0000*pi[id].monthly_game_won[monthnum]/game_played;
+	
+	return x;
+}
+
 void game_insert(string winner,string loser)
 {
 	int winner_id=id_find(winner);
@@ -143,6 +165,10 @@ void game_insert(string winner,string loser)
 	
 	game_num++;
 	
+	pi[loser_id].monthly_game_num[months_played]++;
+	pi[winner_id].monthly_game_num[months_played]++;
+	pi[winner_id].monthly_game_won[months_played]++;
+	
 	pi[loser_id].game_lost++;
 	pi[winner_id].game_won++;
 	games[game_num][1]=winner_id;
@@ -156,22 +182,22 @@ void input_file()
 {
 	string winner;
 	string loser;
-	
 	cin >> winner >> loser;
 	game_insert(winner,loser);
 }
 
 void output_file()
 {
-	freopen("Ratingstxt","w",stdout);
+	freopen("Ratings.txt","w",stdout);
 	
 	cout << "There are " << game_num << " games and " << player_num << " players in total." << endl;
 	cout << "Minimum games played is " << MIN_GAMES << "." << endl;
+	cout << "Minimum games played this month is " << MIN_MONTHLY_GAMES << "." << endl;
 	
 	for(int p=1;p<=player_num;p++)
 	{
-		if(pi[p].game_lost+pi[p].game_won>=MIN_GAMES)
-		cout << pi[p].name << " , " << pi[p].rating << " , " <<  win_rating(p)  << " , " << pi[p].game_lost+pi[p].game_won << endl;
+		if(pi[p].game_lost+pi[p].game_won>=MIN_GAMES&&pi[p].monthly_game_num[months_played]>=MIN_MONTHLY_GAMES)
+		cout << pi[p].name << " , " << pi[p].rating << " , " <<  win_rating(p)  << " , " << pi[p].game_lost+pi[p].game_won << " , " << pi[p].monthly_game_num[months_played] << " , " <<monthly_win_rating(months_played,p)<< endl;
 	}
 	fclose(stdout);
 }
@@ -185,15 +211,35 @@ void rating_sort()
 	name_id.insert(make_pair<string,int>(pi[p].name,p));
 }
 
+void rating_dacaying()
+{
+	for(int p=1;p<=player_num;p++)
+	{
+		double temp=pi[p].rating-1500;
+		temp=temp*0.80;
+		pi[p].rating=1500+temp;
+	}
+	month_factor*=0.800;
+}
 int main()
 {
-	freopen("Games_Alltime.txt","r",stdin);
-	int n;
-	n=read();
-	for(int p=1;p<=n;p++)
-	input_file();
+	freopen("Games_Alltime2.txt","r",stdin);
+	int mths;
+	mths=read();
+	
+	for(int p=1;p<=mths;p++)
+	{
+		months_played++;
+		int n;
+		n=read();
+		for(int p=1;p<=n;p++)
+		input_file();
+		rating_dacaying();
+		
+	}
+	
 	rating_sort();
-//	history_rating_output(id_find("WFZ"));
+//	history_rating_output(id_find("Yumiko"));
 	output_file();
 	fclose(stdout);
 	return 0;
