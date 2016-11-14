@@ -11,7 +11,7 @@
 using namespace std;
 
 const double START_RATING = 1500.000;
-const int MIN_GAMES = 30;
+const int MIN_GAMES = 25;
 const int MIN_MONTHLY_GAMES=5;
 
 map<string,int>name_id;
@@ -56,8 +56,6 @@ double k_factor_calculate(int id)
 	if(game_played)
 	{
 		x=(800/(game_played*month_factor)*1.000);
-		if(pi[id].name=="Th000")
-		cout << x << endl;
 	}
 	
 	
@@ -66,8 +64,6 @@ double k_factor_calculate(int id)
 	
 	x=min(x,48.000);
 	x=max(x,16.000);
-	if(pi[id].name=="Th000")
-		cout << x << endl;
 	return x;
 }
 
@@ -99,8 +95,10 @@ void history_rating_output(int player_id)
 {
 	freopen("HistoryRating.TXT","w",stdout);
 	
-	for(int p=1;p<=pi[player_id].rating_change_history_time;p++)
+	for(int p=1;p<=pi[player_id].rating_change_history_time+2;p++)
 	cout << pi[player_id].rating_change_history_oppo[p] << " " << pi[player_id].rating_change_history_rating[p]<< endl;
+	
+	cout << "total:" <<  pi[player_id].rating;
 	
 }
 
@@ -173,6 +171,7 @@ void game_insert(string winner,string loser)
 	pi[winner_id].game_won++;
 	games[game_num][1]=winner_id;
 	games[game_num][2]=loser_id;
+	
 	player_rating_calculate(winner_id,loser_id);
 	history_rating_mark(winner_id,loser);
 	history_rating_mark(loser_id,winner);
@@ -232,14 +231,15 @@ int main()
 		months_played++;
 		int n;
 		n=read();
-		for(int p=1;p<=n;p++)
+		for(int o=1;o<=n;o++)
 		input_file();
+		if(p!=mths)
 		rating_dacaying();
 		
 	}
 	
 	rating_sort();
-//	history_rating_output(id_find("Yumiko"));
+	history_rating_output(id_find("Th000"));
 	output_file();
 	fclose(stdout);
 	return 0;
