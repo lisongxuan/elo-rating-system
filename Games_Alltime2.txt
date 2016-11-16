@@ -427,7 +427,7 @@ Moon Chaemiko
 Chaemiko Moon
 Believe free
 Believe free
-206
+211
 Lawliet Yumiko
 Yumiko Lawliet
 Yumiko Lawliet
@@ -634,3 +634,8 @@ WFZ SoK
 WFZ SoK
 120 Yumiko
 120 Yumiko
+ReMinD 120
+120 ReMinD
+120 ReMinD
+120 ReMinD
+120 ReMinD
