@@ -427,7 +427,7 @@ Moon Chaemiko
 Chaemiko Moon
 Believe free
 Believe free
-272
+304
 Lawliet Yumiko
 Yumiko Lawliet
 Yumiko Lawliet
@@ -700,3 +700,35 @@ Wudao Footman
 Footman Wudao
 Wudao Footman
 Life Yumiko
+Yumiko Life
+Life Yumiko
+Zhouxixi Wudao
+Zhouxixi Wudao
+Romantic Focus
+Focus Romantic
+Focus Romantic
+XiaoKK Elegant
+Elegant XiaoKK
+XiaoKK Elegant
+Romantic Elegant
+Romantic Elegant
+XiaoKK Focus
+XiaoKK Focus
+Happy Rudan
+Happy Rudan
+Lucifer Joker
+Lucifer Joker
+Believe ReMinD
+Believe ReMinD
+OrcWorker Anima
+OrcWorker Anima
+Happy Lucifer
+Happy Lucifer
+Believe OrcWorker
+OrcWorker Believe
+OrcWorker Believe
+OrcWorker Happy
+Happy OrcWorker
+OrcWorker Happy
+Happy OrcWorker
+Happy OrcWorker
