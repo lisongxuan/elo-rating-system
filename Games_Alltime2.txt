@@ -427,7 +427,7 @@ Moon Chaemiko
 Chaemiko Moon
 Believe free
 Believe free
-304
+315
 Lawliet Yumiko
 Yumiko Lawliet
 Yumiko Lawliet
@@ -732,3 +732,14 @@ Happy OrcWorker
 OrcWorker Happy
 Happy OrcWorker
 Happy OrcWorker
+Focus Yumiko
+Focus Yumiko
+Focus Yumiko
+Focus Yumiko
+ReMinD Focus
+Focus ReMinD
+Focus ReMinD
+ReMinD Focus
+ReMinD Focus
+Focus ReMinD
+ReMinD Focus
